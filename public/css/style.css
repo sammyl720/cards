@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#confetti {
+    background: url('https://i.pinimg.com/originals/e5/83/3e/e5833e1bea7d379f0f4e4ae250b7cf81.gif');
+    background-size: cover;
+}
+
+.container {
+    width: 18.75rem;
+    height: 28.125rem;
+    background: #76BED0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    box-shadow: 4px 4px 12px -7px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-family: 'Poppins', sans-serif;
+    color: #0E1116;
+    transition: 500ms;
+}
+
+.back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: black;
+    font-family: 'Beth Ellen', cursive;
+    padding: 5px;
+}
+
+.img {
+    width: 80px;
+    height: 120px;
+    border-radius: 15px;
+    background: url('https://images.unsplash.com/photo-1516967124798-10656f7dca28?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ');
+    background-size: cover;
+}
+
+.back {
+    width: 18.75rem;
+    height: 28.125rem;
+    background: #fccf83;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 4px 4px 12px -7px black;
+    transition: 500ms;
+}
+
+.active {
+    transform: translate(calc(0% - 4px), -50%);
+    transition: 500ms;
+    box-shadow: 6px 6px 12px -10px black;
+    z-index: 200;
+}
+
+.open {
+    transform: translate(-100%, -50%) rotate3d(0, 12, 0, 180deg);
+    background: #fccf83;
+    box-shadow: 5px 5px -12px -4px black;
+    transition: all 500ms;
+    z-index: 100;
+}
+
+.active:before {
+    content: "";
+    height: 100%;
+    background: linear-gradient(to right, #fccf83, rgba(14, 17, 22, 0.486), #fccf83);
+    width: 10px;
+    position: absolute;
+    left: -15px;
+    z-index: 550;
+    opacity: 0.5;
+}
+
+.open>.title,
+.open>.img {
+    opacity: 0.2;
+    box-shadow: inset 2px 2px 10px -6px black;
+    ;
+    text-shadow: inset 2px 2px 10px -6px black;
+    transition: all 500ms;
+}
+
+@media (max-width:600px) {
+    .back,
+    .container {
+        width: 50vw;
+        height: 75vw;
+        font-size: 80%;
+    }
+    .active,
+    .open {
+        left: 75%;
+    }
+    .open {
+        transform: translate(-150%, -50%) rotate3d(0, 12, 0, 180deg);
+    }
+    .active {
+        transform: translate(calc(-50% - 4px), -50%);
+    }
+}
+
+.frame {
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid rgb(104, 253, 104);
+    overflow: hidden;
+}

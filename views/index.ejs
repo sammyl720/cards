@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Beth+Ellen|Poppins|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="/public/css/main.css">
+    <title>
+        <%= pageTitle %>
+    </title>
+</head>
+
+<body>
+    <div class="form-wrapper">
+        <h4 class="title">Customize your own greeting Card</h4>
+        <form action="/card" method='post' class="form">
+            <div class="input-group">
+                <label for="title">
+          Title
+        </label>
+                <input type="text" name="title" id="title" class="input-control" required>
+            </div>
+            <div class="input-group">
+                <label for="message">
+         Message
+        </label>
+                <textarea name="message" id="title" class="input-control" required></textarea>
+            </div>
+            <div class="input-group">
+                <label for="sign">
+          Signature
+        </label>
+                <input type="text" name="sign" id="sign" class="input-control" required>
+            </div>
+            <input type="submit" value="Create" class="btn">
+        </form>
+    </div>
+</body>
+
+</html>

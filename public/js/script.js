@@ -5,6 +5,7 @@ const img = ge('img')
 const song = new Audio('/public/assets/audio/bdaysong.mp3')
 img.style.background = `url(${img.dataset.img})`
 img.style.backgroundSize = 'cover'
+img.style.backgroundPosition ='center'
 container.addEventListener('click', () => {
   if (!back.classList.contains('active')) {
     back.classList.add('active')

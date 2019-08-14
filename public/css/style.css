@@ -10,9 +10,9 @@
 }
 
 .container {
-    width: 18.75rem;
+    width: 19.75rem;
     height: 28.125rem;
-    background: #76BED0;
+    background: rgb(118, 175, 208);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -39,17 +39,18 @@
 }
 
 .img {
-    width: 80px;
-    height: 120px;
+    width: 100px;
+    min-height: 120px;
     border-radius: 15px;
     /* background: attr(data-img); */
     background-size: cover;
+    background-position: center;
 }
 
 .back {
     width: 18.75rem;
     height: 28.125rem;
-    background: #fccf83;
+    background: #fcea83;
     position: absolute;
     top: 50%;
     left: 50%;

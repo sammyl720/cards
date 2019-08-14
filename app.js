@@ -13,6 +13,7 @@ const storage = multer.diskStorage({
     cb(null, imageFolder)
   },
   filename: (req, file, cb) => {
+    console.log(`file name: ${file.originalname}`)
     cb(null, file.fieldname + '-' + Date.now().toString() + path.extname(file.originalname))
   }
 })
@@ -31,7 +32,8 @@ app.get('/', (req, res, next) => {
 
 app.post('/card', upload.single('pic'), async (req, res, next) => {
   console.log(req.file)
-  const picture = req.file.filename
+  const picture = req.file ? req.file.filename : 'picture.png'
+  console.log(picture)
   const { title, message, sign } = req.body
   const card = await new Card({ title, message, picture, sign })
   console.log(card)

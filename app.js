@@ -2,11 +2,23 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const path = require('path')
+const multer = require('multer')
 require('dotenv').config()
 const Card = require('./models/card')
 const port = process.env.PORT || 3000
 app.set('view engine', 'ejs')
-
+const imageFolder = path.join(__dirname, 'public', 'imgs') || 'public/imgs'
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, imageFolder)
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.fieldname + '-' + Date.now().toString() + path.extname(file.originalname))
+  }
+})
+const upload = multer({
+  storage: storage
+})
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/public', express.static(path.join(__dirname, 'public')))
@@ -17,25 +29,29 @@ app.get('/', (req, res, next) => {
   })
 })
 
-app.post('/card', async (req, res, next) => {
+app.post('/card', upload.single('pic'), async (req, res, next) => {
+  console.log(req.file)
+  const picture = req.file.filename
   const { title, message, sign } = req.body
-  const card = await new Card({title, message, sign })
+  const card = await new Card({ title, message, picture, sign })
   console.log(card)
   await card.save()
   res.render('card', {
     pageTitle: `Your Card '${title}'`,
     title,
+    picture,
     message,
     sign
   })
 })
 app.get('/card', async (req, res, next) => {
-  const { title, message, sign } = req.query
+  const { title, message, sign, picture } = req.query
   res.render('card', {
     pageTitle: 'Your Cards',
     title,
     message,
-    sign
+    sign,
+    picture
   })
 })
 app.get('/cards', async (req, res, next) => {

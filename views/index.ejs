@@ -16,7 +16,7 @@
 <body>
     <div class="form-wrapper">
         <h4 class="title">Customize your own greeting Card</h4>
-        <form action="/card" method='post' class="form">
+        <form action="/card" method='post' enctype="multipart/form-data" class="form">
             <div class="input-group">
                 <label for="title">
           Title
@@ -28,6 +28,12 @@
          Message
         </label>
                 <textarea name="message" id="title" class="input-control" required></textarea>
+            </div>
+            <div class="input-group">
+                <label for="pic">
+         Picture
+        </label>
+                <input type="file" name="pic" id="pic" class="input-control">
             </div>
             <div class="input-group">
                 <label for="sign">

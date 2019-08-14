@@ -14,6 +14,10 @@ const cardSchema = new Schema({
   sign: {
     type: String,
     required: true
+  },
+  picture: {
+    type: String,
+    required: true
   }
 }, {
   timestamps: true

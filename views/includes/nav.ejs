@@ -1,0 +1,19 @@
+ <% if(!nonav) { %>
+ <nav class="nav-extended">
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo "><img class='responsive-img circle valign' src="/public/imgs/logo.png" width='30' height='45' alt=""></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/cards">Your Cards</a></li>
+    <li><a href="/">Create new Card</a></li>
+      </ul>
+    </div>
+    
+  </nav>
+  <% } %>
+
+  <ul class="sidenav" id="mobile-demo">
+    
+    <li><a href="/cards">Your Cards</a></li>
+    <li><a href="/">Create new Card</a></li>
+  </ul>

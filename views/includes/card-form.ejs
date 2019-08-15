@@ -1,0 +1,46 @@
+<div class="row darken-5-text blue-text">
+    <div class="col s8 offset-s2">
+        <h3 class="title">Create a Card</h3>
+
+        <form class="col s12" method="POST" action="/card" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="title" type="text" class="validate" name='title' required>
+                    <label for="title">Title</label>
+                </div>
+
+            </div>
+
+            <div class="col s12">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Picture</span>
+                        <input type="file" name="pic">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input name="pic" class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="message" type="text" class="validate" name='message' required>
+                    <label for="message">Message</label>
+                </div>
+            </div>
+            <div class="input-field col s12">
+                <input id="sign" type="text" class="validate" name='sign' required>
+                <label for="sign">Sign</label>
+            </div>
+            <div class="col s4 offset-s4  valign-wrapper">
+                <button type="submit" class="waves-effect waves-light btn-large blue center-align">
+                  
+                    <i class="material-icons right" style="font-size: 3rem">
+                  create
+                </i>Create
+              </button>
+            </div>
+
+        </form>
+    </div>
+</div>

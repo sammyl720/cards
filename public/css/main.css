@@ -8,7 +8,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background: linear-gradient(to bottom right, rgb(255, 153, 0), rgb(240, 84, 45), rgb(255, 153, 0)) no-repeat;
     background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -42,13 +41,6 @@ body {
     justify-content: space-evenly;
 }
 
-.input-group {
-    width: 60%;
-    display: flex;
-    align-items: stretch;
-    justify-content: space-between;
-}
-
 .input-control {
     outline: rgb(11, 95, 122);
     border: none;
@@ -66,7 +58,8 @@ body {
     border-bottom: 2px solid rgb(129, 230, 46);
 }
 
-.btn {
+
+/* .btn {
     width: 60%;
     background: green;
     outline: none;
@@ -77,9 +70,10 @@ body {
     border-radius: 5px;
     transition: 300ms;
     background: linear-gradient(to bottom right, rgb(255, 153, 0), rgb(240, 84, 45), rgb(255, 153, 0), rgb(240, 84, 45)) no-repeat;
-}
+} */
 
-.btn:hover {
+
+/* .btn:hover {
     transform: scale(1.1) translateY(-5px);
     box-shadow: -5px -5px 20px -15px black;
     background: linear-gradient(to bottom right, rgb(240, 84, 45), rgb(255, 153, 0), rgb(240, 84, 45)) no-repeat;
@@ -88,4 +82,4 @@ body {
 .btn:active {
     transform: scale(0.9) translateY(1px);
     box-shadow: inset -5px -5px 20px -15px black;
-}
+} */

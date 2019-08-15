@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css?family=Beth+Ellen|Poppins|Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="/public/css/style.css">
-    <title>
-        <%= pageTitle %>
-    </title>
-</head>
-
-<body>
+<% include includes/header %>
     <h5 class="pageTitle">
         <%= pageTitle %>
     </h5>
     <div class="cards">
         <% cards.forEach(card => { %>
 
-            <iframe id='<%= card.id.toString() %>' class='frame' src="/card?title=<%= card.title %>&message=<%= card.message %>&sign=<%= card.sign %>&picture=<%= card.picture %>">
+            <iframe id='<%= card.id.toString() %>' class='frame' src="/card?title=<%= card.title %>&message=<%= card.message %>&sign=<%= card.sign %>&picture=<%= card.picture %>&nonav=true" scrolling='no'>
                 <p>
                     <%= card.createdAt %>
                 </p></iframe>
             <% })%>
     </div>
+    <% include includes/footer %>
+        </body>
 
-</body>
-
-</html>
+        </html>

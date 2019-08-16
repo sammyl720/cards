@@ -1,0 +1,28 @@
+<% include includes/header %>
+    <h5 class="pageTitle">
+        <%= pageTitle %>
+    </h5>
+    <div class="cards">
+        <% cards.forEach(card => { %>
+            <div class="center-align">
+                <iframe class='frame' src="/card?title=<%= card.title %>&message=<%= card.message %>&sign=<%= card.sign %>&picture=<%= card.picture %>&song=<%= card.song %>&confetti=<%= card.confetti %>&heart=<%= card.heart %>&nonav=true" scrolling='no'>
+                        <p>
+                            <%= card.createdAt %>
+                        </p></iframe>
+                <div class="btn" data-cardId='<%= card._id %>'>View</div>
+            </div>
+
+            <% })%>
+    </div>
+        <script>
+            const btn = document.querySelectorAll('.btn')
+            btn.forEach(button => {
+                button.addEventListener('click', () => {
+                    window.location.href = `/card/${button.dataset.cardid}`
+                })
+            })
+        </script>
+        <% include includes/footer %>
+        </body>
+
+        </html>

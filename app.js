@@ -79,14 +79,27 @@ app.post('/card', upload.single('pic'), validators.cardValidation, async (req, r
 })
 app.get('/card', async (req, res, next) => {
   const { title, message, sign, picture, nonav } = req.query
+  const card = { title, message, sign, picture }
   res.render('card', {
     pageTitle: 'Your Cards',
-    title,
-    message,
-    sign,
-    picture,
+    card,
     nonav
   })
+})
+app.get('/card/:cardId', async (req, res, next) => {
+  const cardId = req.params.cardId
+  try {
+    const card = await Card.findById(cardId)
+    res.render('card', {
+      pageTitle: 'A gift for you!',
+      card: card
+    })
+  } catch (err) {
+    console.log(err.message)
+    err.message = `a Card with id ${cardId} was not found`
+    err.statusCode = 404
+    next(err)
+  }
 })
 app.get('/cards', async (req, res, next) => {
   const cards = await Card.find()
@@ -96,7 +109,12 @@ app.get('/cards', async (req, res, next) => {
     cards: cards
   })
 })
-
+app.use((err, req, res, next) => {
+  res.status(err.statusCode || 501).render('error', {
+    pageTitle: 'Error',
+    error: err.message
+  })
+})
 mongoose.connect(process.env.DATABASE_URI, { useNewUrlParser: true }).then(result => {
   console.log('Connected to database')
   app.listen(port, () => {

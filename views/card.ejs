@@ -4,21 +4,21 @@
 
         <div class="back" id="back">
             <p class='message'>
-                <%= message %>
+                <%= card.message %>
             </p>
             <div style="float:right;">
                 <i class="fas fa-heart"></i>
                 <h4 style="display:inline;margin-left:10px;font-size:1rem;">
-                    <%= sign %>
+                    <%= card.sign %>
                 </h4>
             </div>
 
         </div>
         <div class="container" id="container">
             <h2 class="title">
-                <%= title %>
+                <%= card.title %>
             </h2>
-            <div class="img" id='img' data-img="/public/imgs/<%= picture %>"></div>
+            <div class="img" id='img' data-img="/public/imgs/<%= card.picture %>"></div>
         </div>
     </div>
     <script src="/public/js/script.js"></script>

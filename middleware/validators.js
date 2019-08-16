@@ -7,3 +7,12 @@ exports.cardValidation = [
   check('song').toBoolean(),
   check('confetti').toBoolean(),
   check('sign').isLength({ min: 2, max: 14 }).withMessage('Sign should be between 2 and 14 Characters long')]
+
+exports.signupValidation = [
+  check('password')
+    .isLength({ min: 6 })
+    .withMessage('password must be at least 6 characters'),
+  check('email', 'email is not valid')
+    .isEmail()
+    .trim()
+]

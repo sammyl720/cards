@@ -1,10 +1,25 @@
 <% include includes/header %>
     <div class="section"></div>
-    <div class='valign'>
+    <% if(errors) { %>
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <% errors.forEach(error => { %>
+                    <div class=" red lighten-3 red-text text-darken-3 center center-align" style="margin:5px;padding:5px;border-radius:4px;">
+                        <%= error.msg %>
+                    </div>
 
-        <% include includes/card-form %>
-    </div>
-    <% include includes/footer %>
-        </body>
+                    <% }) %>
+            </div>
+        </div>
 
-        </html>
+        <% } %>
+            <div class='section'>
+            </div>
+            <div class='valign'>
+
+                <% include includes/card-form %>
+            </div>
+            <% include includes/footer %>
+                </body>
+
+                </html>

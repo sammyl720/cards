@@ -5,7 +5,7 @@
         <form class="col s12" method="POST" action="/card" enctype="multipart/form-data">
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="title" type="text" class="validate" name='title' required>
+                    <input id="title" type="text" class="validate" name='title' value='<%= info !== "empty" ?  info.title : "" %>'>
                     <label for="title">Title</label>
                 </div>
 
@@ -24,12 +24,12 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="message" type="text" class="validate" name='message' required>
+                    <input id="message" type="text" class="validate" name='message' value='<%= info !== "empty" ?  info.message : "" %>'>
                     <label for="message">Message</label>
                 </div>
             </div>
             <div class="input-field col s12">
-                <input id="sign" type="text" class="validate" name='sign' required>
+                <input id="sign" type="text" class="validate" name='sign' value='<%= info !== "empty" ?  info.sign : "" %>'>
                 <label for="sign">Sign</label>
             </div>
             <div class="col s4 offset-s4  valign-wrapper">

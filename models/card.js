@@ -18,6 +18,18 @@ const cardSchema = new Schema({
   picture: {
     type: String,
     required: true
+  },
+  song: {
+    type: Boolean,
+    default: true
+  },
+  heart: {
+    type: Boolean,
+    default: true
+  },
+  confetti: {
+    type: Boolean,
+    default: true
   }
 }, {
   timestamps: true

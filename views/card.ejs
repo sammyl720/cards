@@ -2,12 +2,12 @@
     <div class="box">
 
 
-        <div class="back" id="back">
+        <div class="back" data-song='<%= card.song %>' data-confetti='<%= card.confetti %>' data-heart='<%= card.heart %>' id="back">
             <p class='message'>
                 <%= card.message %>
             </p>
             <div style="float:right;">
-                <i class="fas fa-heart"></i>
+                <%- card.heart ? '<i class="fas fa-heart"></i>' : '' %>
                 <h4 style="display:inline;margin-left:10px;font-size:1rem;">
                     <%= card.sign %>
                 </h4>

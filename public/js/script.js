@@ -2,21 +2,27 @@ const ge = (id) => document.getElementById(id)
 const container = ge('container')
 const back = ge('back')
 const img = ge('img')
+console.log(`With song : ${back.dataset.song}`)
+const play = back.dataset.song === 'true'
+const confetti = back.dataset.confetti === 'true'
+console.log(`Play: ${play}`)
 const song = new Audio('/public/assets/audio/bdaysong.mp3')
 img.style.background = `url(${img.dataset.img})`
 img.style.backgroundSize = 'cover'
-img.style.backgroundPosition ='center'
+img.style.backgroundPosition = 'center'
 container.addEventListener('click', () => {
   if (!back.classList.contains('active')) {
     back.classList.add('active')
     container.classList.add('open')
-    document.body.id = 'confetti'
-    song.play()
+    if (confetti) {
+      document.body.id = 'confetti'
+    }
+    if (play) song.play()
   } else {
     back.classList.remove('active')
     container.classList.remove('open')
     document.body.id = ''
-    song.pause()
+    if (play) song.pause()
   }
 })
 back.addEventListener('click', () => {

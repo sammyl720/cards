@@ -100,7 +100,7 @@ router.post('/signup', validators.signupValidation, async (req, res, next) => {
 router.post('/login', async (req, res, next) => {
   const { email, password } = req.body
   try {
-    const user = User.findOne({ email: email })
+    const user = await User.findOne({ email: email })
     if (!user) {
       return res.status(403).render('auth/login', {
         pageTitle: 'Login',
@@ -124,7 +124,9 @@ router.post('/login', async (req, res, next) => {
           }
         })
       } else {
-        req.session.user = user
+        req.session.user = user.id
+        // redirect page to set a new request
+        console.log(req.session)
         return res.status(200).render('index', {
           pageTitle: 'Welcome',
           success: [{ msg: 'Welcome Aboard' }],

@@ -30,13 +30,19 @@ const upload = multer({
   storage: storage,
   fileFilter: imageFilter
 })
-
+router.get('/new-card', (req, res, next) => {
+  res.render('add-card', {
+    pageTitle: 'Add a new Card',
+    errors: null,
+    info: 'empty'
+  })
+})
 router.post('/card', upload.single('pic'), validators.cardValidation, async (req, res, next) => {
   const errors = await validationResult(req)
   console.log(`Bday Song: ${req.body.song}`)
   console.log(`Form validation errors: ${errors.array()}`)
   if (!errors.isEmpty()) {
-    return res.status(422).render('index', {
+    return res.status(422).render('add-card', {
       pageTitle: 'Landing Page',
       errors: errors.array(),
       info: {

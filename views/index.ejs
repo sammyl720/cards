@@ -13,26 +13,35 @@
         </div>
 
         <% } %>
-        <% if(success) { %>
-        <div class="row">
-            <div class="col s6 offset-s3">
-                <% success.forEach(res => { %>
-                    <div class="green lighten-3 green-text text-darken-3 center center-align" style="margin:5px;padding:5px;border-radius:4px;">
-                        <%= res.msg %>
+            <% if(success) { %>
+                <div class="row">
+                    <div class="col s6 offset-s3">
+                        <% success.forEach(res => { %>
+                            <div class="green lighten-3 green-text text-darken-3 center center-align" style="margin:5px;padding:5px;border-radius:4px;">
+                                <%= res.msg %>
+                            </div>
+
+                            <% }) %>
                     </div>
+                </div>
 
-                    <% }) %>
-            </div>
-        </div>
+                <% } %>
+                    <div class='section'>
+                    </div>
+                    <div class='valign'>
 
-        <% } %>
-            <div class='section'>
-            </div>
-            <div class='valign'>
+                        <div class="row">
+                            <div class="col s4 offset-s4 center-align">
+                                <h3>
+                                    Welcome To Create Cards
+                                </h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias nihil, consequatur voluptates ut architecto dicta perspiciatis officiis sapiente. Cum voluptatum itaque labore. Necessitatibus dignissimos rerum obcaecati et nisi. Id, reprehenderit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <% include includes/footer %>
+                        </body>
 
-                <% include includes/card-form %>
-            </div>
-            <% include includes/footer %>
-                </body>
-
-                </html>
+                        </html>

@@ -1,0 +1,38 @@
+<% include includes/header %>
+    <div class="section"></div>
+    <% if(errors) { %>
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <% errors.forEach(error => { %>
+                    <div class=" red lighten-3 red-text text-darken-3 center center-align" style="margin:5px;padding:5px;border-radius:4px;">
+                        <%= error.msg %>
+                    </div>
+
+                    <% }) %>
+            </div>
+        </div>
+
+        <% } %>
+        <% if(success) { %>
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <% success.forEach(res => { %>
+                    <div class="green lighten-3 green-text text-darken-3 center center-align" style="margin:5px;padding:5px;border-radius:4px;">
+                        <%= res.msg %>
+                    </div>
+
+                    <% }) %>
+            </div>
+        </div>
+
+        <% } %>
+            <div class='section'>
+            </div>
+            <div class='valign'>
+
+                <% include includes/card-form %>
+            </div>
+            <% include includes/footer %>
+                </body>
+
+                </html>

@@ -75,7 +75,7 @@ router.post('/signup', validators.signupValidation, async (req, res, next) => {
       password: hashedPassword
     })
     await user.save()
-    return res.status(200).render('index', {
+    return res.status(200).render('add-card', {
       pageTitle: 'Welcome',
       success: [{ msg: 'Welcome Aboard' }],
       errors: null,
@@ -127,7 +127,7 @@ router.post('/login', async (req, res, next) => {
         req.session.user = user.id
         res.locals.isLoggedIn = true
         console.log(req.session)
-        return res.status(200).render('index', {
+        return res.status(200).render('add-card', {
           pageTitle: 'Welcome',
           success: [{ msg: 'Welcome Aboard' }],
           errors: null,

@@ -16,4 +16,5 @@
     
     <li><a href="/cards">Your Cards</a></li>
     <li><a href="/">Create new Card</a></li>
+    <%- isLoggedIn ? '<li><a href="/auth/logout">Log out</a></li>' : '<li><a href="/auth/login">Login</a></li>' %>
   </ul>

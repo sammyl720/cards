@@ -124,6 +124,7 @@ router.post('/login', async (req, res, next) => {
           }
         })
       } else {
+        req.session.user = user
         return res.status(200).render('index', {
           pageTitle: 'Welcome',
           success: [{ msg: 'Welcome Aboard' }],

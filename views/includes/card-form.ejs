@@ -32,37 +32,45 @@
                 <input id="sign" type="text" class="validate" name='sign' value='<%= info !== "empty" ?  info.sign : "" %>'>
                 <label for="sign">Sign</label>
             </div>
-            <div class='right'>
-            <p>
-                <label>
-                    <input type="checkbox"
-                    checked="checked" name='heart'/>
-                        <span>Heart Icon</span>
-                    </label>
+            <div class="col s12">
+                <div class='col s4'>
+                    <p>
+                        <label>
+                            <input type="checkbox"
+                            checked="checked" name='heart'/>
+                                <span>Heart Icon</span>
+                            </label>
                     </p>
-                <p>
-                <label>
-                    <input type="checkbox"
-                    checked="checked" name='song'/>
-                        <span>Birthday Song</span>
-                    </label>
+                </div>
+                <div class="col s4">
+                    <p>
+                        <label>
+                            <input type="checkbox"
+                            checked="checked" name='song'/>
+                                <span>Birthday Song</span>
+                            </label>
                     </p>
-            <p>
-      <label>
-        <input type="checkbox" checked="checked"
-        name='confetti' />
-        <span>Confetti Background</span>
-      </label>
-    </p>
+                </div>
+                <div class="col s4">
+                    <p>
+                        <label>
+                <input type="checkbox" checked="checked"
+                name='confetti' />
+                <span>Confetti Background</span>
+              </label>
+                    </p>
+                </div>
             </div>
-            
-            <div class="col s4 offset-s4  valign-wrapper">
-                <button type="submit" class="waves-effect waves-light btn-large blue center-align">
-                  
-                    <i class="material-icons right" style="font-size: 3rem">
-                  create
+
+            <div class="section"></div>
+            <div class="row">
+                <div class="col s4 offset-s4 valign-wrapper">
+                    <button type="submit" class="waves-effect waves-light btn-large blue center-align">
+                    <i class="material-icons" style="font-size: 3rem">
+                    send
                 </i>Create
               </button>
+                </div>
             </div>
 
         </form>

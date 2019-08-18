@@ -4,7 +4,7 @@ const multer = require('multer')
 const Card = require('../models/card')
 const router = require('express').Router()
 const path = require('path')
-const imageFolder = path.join(__dirname, 'public', 'imgs') || 'public/imgs'
+const imageFolder = path.join(path.dirname(__dirname), 'public', 'imgs') || 'public/imgs'
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, imageFolder)
@@ -19,6 +19,7 @@ const imageFilter = (req, file, cb) => {
   const ext = path.extname(file.originalname)
   console.log(ext)
   if (ext === '.png' || ext === '.jpeg' || ext === '.gif' || ext === '.jpg' || ext === '.JPG') {
+    console.log('test')
     cb(null, true)
   } else {
     cb(null, false)

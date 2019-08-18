@@ -83,3 +83,10 @@ body {
     transform: scale(0.9) translateY(1px);
     box-shadow: inset -5px -5px 20px -15px black;
 } */
+
+.text {
+    font-size: 1.8rem;
+    font-family: 'Poppins', cursive;
+    text-align: justify;
+    line-height: 2;
+}

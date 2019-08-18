@@ -30,6 +30,11 @@ const cardSchema = new Schema({
   confetti: {
     type: Boolean,
     default: true
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 }, {
   timestamps: true

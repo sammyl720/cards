@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+.message {
+    padding: 5px;
+    text-align: center;
+}
+
 .back {
     font-size: 1rem;
 }

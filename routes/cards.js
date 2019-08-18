@@ -2,6 +2,8 @@ const { validationResult } = require('express-validator')
 const validators = require('../middleware/validators')
 const multer = require('multer')
 const Card = require('../models/card')
+const User = require('../models/user')
+const authenticate = require('../middleware/authenticate')
 const router = require('express').Router()
 const path = require('path')
 const imageFolder = path.join(path.dirname(__dirname), 'public', 'imgs') || 'public/imgs'
@@ -30,14 +32,14 @@ const upload = multer({
   storage: storage,
   fileFilter: imageFilter
 })
-router.get('/new-card', (req, res, next) => {
+router.get('/new-card', authenticate, (req, res, next) => {
   res.render('add-card', {
     pageTitle: 'Add a new Card',
     errors: null,
     info: 'empty'
   })
 })
-router.post('/card', upload.single('pic'), validators.cardValidation, async (req, res, next) => {
+router.post('/card', authenticate, upload.single('pic'), validators.cardValidation, async (req, res, next) => {
   const errors = await validationResult(req)
   console.log(`Bday Song: ${req.body.song}`)
   console.log(`Form validation errors: ${errors.array()}`)
@@ -54,17 +56,21 @@ router.post('/card', upload.single('pic'), validators.cardValidation, async (req
   }
   const picture = req.file ? req.file.filename : 'logo.png'
   const { title, message, sign, song, heart, confetti } = req.body
-  const card = await new Card({ title, message, picture, sign, song, heart, confetti })
+  const currentUser = req.user
+  const card = await new Card({ title, message, picture, sign, song, heart, confetti, user: currentUser })
   console.log(card)
   await card.save()
+  const user = await User.findById(currentUser)
+  user.cards.push(card._id)
+  await user.save()
   res.render('card', {
     pageTitle: `Your Card '${title}'`,
     card: card
   })
 })
-router.get('/card', async (req, res, next) => {
+router.get('/card', authenticate, async (req, res, next) => {
   const { title, message, sign, picture, song, heart, confetti, nonav } = req.query
-  const card = { title, message, sign, picture, song, heart, confetti }
+  const card = { title, message, sign, picture, song, heart, confetti, user: req.user }
   res.render('card', {
     pageTitle: 'Your Cards',
     card,
@@ -86,8 +92,8 @@ router.get('/card/:cardId', async (req, res, next) => {
     next(err)
   }
 })
-router.get('/cards', async (req, res, next) => {
-  const cards = await Card.find()
+router.get('/cards', authenticate, async (req, res, next) => {
+  const cards = await Card.find({ user: req.user })
   console.log(cards)
   res.render('cards', {
     pageTitle: 'Your Cards',

@@ -125,7 +125,7 @@ router.post('/login', async (req, res, next) => {
         })
       } else {
         req.session.user = user.id
-        // redirect page to set a new request
+        res.locals.isLoggedIn = true
         console.log(req.session)
         return res.status(200).render('index', {
           pageTitle: 'Welcome',
@@ -141,4 +141,13 @@ router.post('/login', async (req, res, next) => {
   }
 })
 
+router.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      err.statusCode = 501
+      next(err)
+    }
+    return res.status(303).redirect('/')
+  })
+})
 module.exports = router

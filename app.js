@@ -25,11 +25,11 @@ app.use((req, res, next) => {
   if (req.session.user) {
     req.user = req.session.user
     res.locals.isLoggedIn = true
-    console.log(`user logged in:${req.user.name} `)
+    console.log(`user logged in:${req.user} `)
   } else {
     res.locals.isLoggedIn = false
+    console.log(`user is not logged in`)
   }
-  console.log(`user is not logged in`)
   next()
 })
 app.get('/', (req, res, next) => {

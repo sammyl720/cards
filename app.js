@@ -1,18 +1,26 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const MongoStore = require('connect-mongodb-session')(session)
 const app = express()
 
 const path = require('path')
 const cardRoutes = require('./routes/cards')
 const authRoutes = require('./routes/auth')
 require('dotenv').config()
-
+const store = new MongoStore({
+  uri: process.env.DATABASE_URI,
+  collection: 'sessions'
+})
 const port = process.env.PORT || 3000
 app.set('view engine', 'ejs')
-
+console.log('hello')
 app.use(express.urlencoded({ extended: false }))
-app.use(session({ secret: process.env.SESSION_SECRET, saveUninitialized: false, resave: false }))
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  store: store,
+  saveUninitialized: false,
+  resave: false }))
 app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use((req, res, next) => {
   res.locals.nonav = false

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const validators = require('../middleware/validators')
-const { check, validationResult } = require('express-validator')
+const { validationResult } = require('express-validator')
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
 

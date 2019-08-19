@@ -121,12 +121,12 @@
 
 .pageTitle {
     font-family: 'Poppins' sans-serif;
-    text-shadow: 3px 3px 4px rgb(60, 60, 240);
+    text-shadow: 3px 3px 4px rgba(0, 0, 53, 0.836);
     letter-spacing: 4px;
     font-size: 2rem;
     line-height: 1.2;
     text-align: center;
-    color: black;
+    color: #76afd0;
     font-weight: 800;
     font-style: italic;
 }
@@ -213,7 +213,6 @@
     .frame {
         width: 100vw;
         height: 100vh;
-        border: 1px solid rgb(104, 253, 104);
         overflow: hidden;
     }
 }

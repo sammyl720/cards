@@ -3,10 +3,10 @@
         <%= pageTitle %>
     </h5>
     <% if (cards.length > 0) { %>
-        <div class="cards">
+        <div class="cards row">
 
             <% cards.forEach(card => { %>
-                <div class="center-align">
+                <div class="center-align col s12 m6 <%= cards.length % 3 === 0 ? 'l4' : 'l5 offset-l1' %>">
                     <iframe class='frame' src="/card?title=<%= card.title %>&message=<%= card.message %>&sign=<%= card.sign %>&picture=<%= card.picture %>&song=<%= card.song %>&confetti=<%= card.confetti %>&heart=<%= card.heart %>&nonav=true" scrolling='no'>
                         <p>
                             <%= card.createdAt %>

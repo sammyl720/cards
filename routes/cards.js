@@ -45,7 +45,7 @@ router.post('/card', authenticate, upload.single('pic'), validators.cardValidati
   console.log(`Form validation errors: ${errors.array()}`)
   if (!errors.isEmpty()) {
     return res.status(422).render('add-card', {
-      pageTitle: 'Landing Page',
+      pageTitle: 'Add a Card',
       errors: errors.array(),
       info: {
         title: req.body.title,
@@ -67,6 +67,67 @@ router.post('/card', authenticate, upload.single('pic'), validators.cardValidati
     pageTitle: `Your Card '${title}'`,
     card: card
   })
+})
+
+// edit a card
+router.get('/edit-card/:cardId', authenticate, async (req, res, next) => {
+  const cardId = req.params.cardId
+  try {
+    const card = await Card.findById(cardId)
+    res.render('edit-card', {
+      pageTitle: 'Edit Your Card',
+      errors: null,
+      info: 'empty',
+      card
+    })
+  } catch (err) {
+    err.statusCode = 404
+    err.msg = 'Card not Found'
+  }
+})
+
+router.post('/edit-card', upload.single('pic'), validators.cardValidation, async (req, res, next) => {
+  const { title, picture, message, sign, song, confetti, heart, id } = req.body
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).render('edit-card', {
+      pageTitle: 'Edit Your Card',
+      errors: errors.array(),
+      info: {
+        title: req.body.title,
+        message: req.body.message,
+        sign: req.body.sign
+      },
+      card: {
+        title,
+        picture,
+        message,
+        sign,
+        song,
+        confetti,
+        heart,
+        id
+      }
+    })
+  }
+  console.log(picture)
+  try {
+    const card = await Card.findById(id)
+    card.title = title
+    card.picture = card.picture === picture ? picture : req.file.filename
+    card.message = message
+    card.sign = sign
+    card.song = song
+    card.confetti = confetti
+    card.heart = heart
+    await card.save()
+    req.session.success = [{ msg: `Succesfuly updated card "${title}"` }]
+    res.status(303).redirect('/cards')
+  } catch (err) {
+    err.msg = 'Oops... Something went wrong'
+    err.statusCode = 501
+    next(err)
+  }
 })
 router.get('/card', authenticate, async (req, res, next) => {
   const { title, message, sign, picture, song, heart, confetti, nonav } = req.query

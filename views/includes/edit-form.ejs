@@ -1,0 +1,81 @@
+<div class="row darken-5-text blue-text">
+    <div class="col s8 offset-s2">
+        <h3 class="title">Create a Card</h3>
+
+        <form class="col s12" method="POST" action="/edit-card" enctype="multipart/form-data">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="title" type="text" class="validate" name='title' value='<%= info !== "empty" ?  info.title : card.title %>'>
+                    <label for="title">Title</label>
+                </div>
+
+            </div>
+
+            <div class="col s12">
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Picture</span>
+                        <input type="file" name="pic">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input name="picture" class="file-path validate"
+                        value="<%= card.picture %>"
+                        type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="message" type="text" class="validate" name='message' value='<%= info !== "empty" ?  info.message : card.message %>''>
+                    <label for="message">Message</label>
+                </div>
+            </div>
+            <div class="input-field col s12">
+                <input id="sign" type="text" class="validate" name='sign' value='<%= info !== "empty" ?  info.sign : card.sign %>'>
+                <label for="sign">Sign</label>
+            </div>
+            <div class="col s12">
+                <div class='col s4'>
+                    <p>
+                        <label>
+                            <input type="checkbox"
+                            <%= card.heart ? "checked" : "" %> name='heart' />
+                                <span>Heart Icon</span>
+                            </label>
+                    </p>
+                </div>
+                <div class="col s4">
+                    <p>
+                        <label>
+                            <input type="checkbox"
+                            <%= card.song ? "checked" : "" %> name='song'/>
+                                <span>Birthday Song</span>
+                            </label>
+                    </p>
+                </div>
+                <div class="col s4">
+                    <p>
+                        <label>
+                <input type="checkbox" <%= card.confetti ? "checked" : "" %>
+                name='confetti' />
+                <span>Confetti Background</span>
+              </label>
+                    </p>
+                </div>
+            </div>
+            <input type="hidden" name="id" value="<%= card._id %>">
+            <div class="section"></div>
+            <div class="section"></div>
+            <div class="row">
+                <div class="col s4 offset-s4" style="margin-top:20px;">
+                    <button type="submit" class="waves-effect waves-light btn-large blue center-align">
+                    <i class="material-icons" style="font-size: 3rem">
+                    send
+                </i>
+              </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

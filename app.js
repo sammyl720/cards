@@ -24,7 +24,12 @@ app.use(session({
 app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use((req, res, next) => {
   res.locals.nonav = false
-  res.locals.success = null
+  if (req.session.success) {
+    res.locals.success = req.session.success
+    req.session.success = null
+  } else {
+    res.locals.success = null
+  }
   if (req.session.errors) {
     res.locals.errors = req.session.errors
     req.session.errors = null

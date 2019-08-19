@@ -1,6 +1,7 @@
 <% include includes/header %>
-    <div class="section"></div>
+
     <% if(errors) { %>
+        <div class="section"></div>
         <div class="row">
             <div class="col s6 offset-s3">
                 <% errors.forEach(error => { %>
@@ -26,24 +27,27 @@
                 </div>
 
                 <% } %>
-                    <div class='section'>
-                    </div>
-                    <div class='valign'>
-
+                    <div class='valign-wrapper'>
+                        <div class="hero"></div>
                         <div class="row">
                             <div class="col s8 offset-s2 center-align">
                                 <h3 class="title" style="font-size: 2rem;">
                                     Welcome To Create Cards
                                 </h3>
-                                <p class="indigo-text text-darken-4 text">
+                                <p class="indigo-text text-lighten-4 text">
                                     The perfect place to create custom free cards for birthdays, annivasaries and more...
                                 </p>
                             </div>
                         </div>
                         <div class="section"></div>
                         <div class="row">
-                            <div class="col s8 offset-s2 center-align">
-                                <a href="/auth/login" class="btn btn-large waves-effect"><span style="margin:0 5px;">Login</span><i class="fas fa-sign-in-alt"></i></a>
+                            <div class="col s6 offset-s3 center-align">
+                                <% if(isLoggedIn){ %>
+                                    <a href="/new-card" class=" btn-large waves-effect waves-light "><i class="fas fa-plus"></i></a>
+                                    <% } else {%>
+
+                                        <a href="/auth/login" class="btn btn-large waves-effect"><span style="margin:0 10px;">Signup</span><i class="fas fa-sign-in-alt"></i></a>
+                                        <% } %>
                             </div>
                         </div>
                     </div>

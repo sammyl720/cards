@@ -155,6 +155,32 @@
     border: none;
 }
 
+.valign-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-position: center;
+    justify-content: space-evenly;
+    height: calc(100vh - 64px);
+    background: rgba(14, 17, 22, 0.479);
+    color: white;
+}
+
+.hero {
+    position: absolute;
+    z-index: -300;
+    background: url('https://static5.depositphotos.com/1003434/471/i/950/depositphotos_4716078-stock-photo-happiness-family.jpg') black;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+
+.row {
+    z-index: 200;
+}
+
 @media (max-width:600px) {
     .back,
     .container {

@@ -87,6 +87,20 @@ body {
 .text {
     font-size: 1.8rem;
     font-family: 'Poppins', cursive;
-    text-align: justify;
-    line-height: 2;
+    line-height: 1.5;
+}
+
+.fas {
+    margin: auto;
+    font-size: 50%;
+    color: white;
+}
+
+.fa-plus::after {
+    content: "Card";
+    margin: auto 7px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-family: "Montez", Cursive;
 }

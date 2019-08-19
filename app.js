@@ -25,6 +25,10 @@ app.use('/public', express.static(path.join(__dirname, 'public')))
 app.use((req, res, next) => {
   res.locals.nonav = false
   res.locals.success = null
+  if (req.session.errors) {
+    res.locals.errors = req.session.errors
+    req.session.errors = null
+  }
   next()
 })
 
@@ -33,10 +37,10 @@ app.use((req, res, next) => {
   if (req.session.user) {
     req.user = req.session.user
     res.locals.isLoggedIn = true
-    console.log(`user logged in:${req.user} `)
+    // console.log(`user logged in:${req.user} `)
   } else {
     res.locals.isLoggedIn = false
-    console.log(`user is not logged in`)
+    // console.log(`user is not logged in`)
   }
   next()
 })

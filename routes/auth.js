@@ -75,6 +75,7 @@ router.post('/signup', validators.signupValidation, async (req, res, next) => {
       password: hashedPassword
     })
     await user.save()
+    res.session.user = user
     return res.status(200).render('add-card', {
       pageTitle: 'Welcome',
       success: [{ msg: 'Welcome Aboard' }],
@@ -85,17 +86,6 @@ router.post('/signup', validators.signupValidation, async (req, res, next) => {
     err.statusCode = 501
     next(err)
   }
-  res.render('auth/signup', {
-    pageTitle: 'Signup',
-    nonav: false,
-    errors: [{ msg: 'Development mode' }],
-    info: {
-      name,
-      email,
-      password,
-      passwordConfirm
-    }
-  })
 })
 router.post('/login', async (req, res, next) => {
   const { email, password } = req.body
@@ -105,7 +95,7 @@ router.post('/login', async (req, res, next) => {
       return res.status(403).render('auth/login', {
         pageTitle: 'Login',
         nonav: false,
-        errors: [{ msg: 'Invalid Credntails' }],
+        errors: [{ msg: 'Invalid Credentails' }],
         info: {
           email,
           password
@@ -117,19 +107,19 @@ router.post('/login', async (req, res, next) => {
         return res.status(403).render('auth/login', {
           pageTitle: 'Login',
           nonav: false,
-          errors: [{ msg: 'Invalid Credntails' }],
+          errors: [{ msg: 'Invalid Credentails' }],
           info: {
             email,
             password
           }
         })
       } else {
-        req.session.user = user.id
+        req.session.user = user
         res.locals.isLoggedIn = true
         console.log(req.session)
         return res.status(200).render('add-card', {
           pageTitle: 'Welcome',
-          success: [{ msg: 'Welcome Aboard' }],
+          success: [{ msg: `Welcome back ${user.name.charAt(0).toUpperCase() + user.name.slice(1)}` }],
           errors: null,
           info: 'empty'
         })

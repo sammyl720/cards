@@ -131,7 +131,7 @@
     font-style: italic;
 }
 
-.cards {
+.cards-pause {
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
@@ -145,10 +145,7 @@
 .frame {
     width: 100%;
     height: 50vh;
-    /* border: 1px solid rgb(104, 253, 104); */
-    /* display: inline-block; */
     overflow: hidden;
-    /* -webkit-overflow-scrolling: touch; */
     overflow-y: hidden;
     background: transparent;
     outline: none;
@@ -164,6 +161,18 @@
     height: calc(100vh - 64px);
     background: rgba(14, 17, 22, 0.479);
     color: white;
+}
+
+.second-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-position: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    margin: 10px auto;
+    font-size: 1.75rem;
+    font-family: 'Livvic', sans-serif;
 }
 
 .hero {

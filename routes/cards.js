@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator')
 const validators = require('../middleware/validators')
+const uploadToAWS = require('../aws/aws')
 const multer = require('multer')
 const ejs = require('ejs')
 const fs = require('fs')
@@ -45,7 +46,7 @@ router.get('/new-card', authenticate, (req, res, next) => {
 })
 router.post('/card', authenticate, upload.single('pic'), validators.cardValidation, async (req, res, next) => {
   const errors = await validationResult(req)
-  console.log(`Bday Song: ${req.body.song}`)
+  console.log(`req.file ${req.file}`)
   console.log(`Form validation errors: ${errors.array()}`)
   if (!errors.isEmpty()) {
     return res.status(422).render('add-card', {
@@ -58,19 +59,32 @@ router.post('/card', authenticate, upload.single('pic'), validators.cardValidati
       }
     })
   }
-  const picture = req.file ? req.file.filename : 'logo.png'
-  const { title, message, sign, song, heart, confetti } = req.body
-  const currentUser = req.user
-  const card = await new Card({ title, message, picture, sign, song, heart, confetti, user: currentUser })
-  console.log(card)
-  await card.save()
-  const user = await User.findById(currentUser)
-  user.cards.push(card._id)
-  await user.save()
-  res.render('card', {
-    pageTitle: `Your Card '${title}'`,
-    card: card
-  })
+  let picture = '/public/imgs/logo.png'
+  if (req.file) {
+    uploadToAWS(req.file.path, req.user._id, async (err, path) => {
+      if (err) {
+        throw err
+      } else {
+        picture = path
+        const { title, message, sign, song, heart, confetti } = req.body
+        const currentUser = req.user
+        const card = await new Card({ title, message, picture, sign, song, heart, confetti, user: currentUser })
+        // console.log(card)
+        await card.save()
+        const user = await User.findById(currentUser)
+        user.cards.push(card._id)
+        await user.save()
+        res.render('card', {
+          pageTitle: `Your Card '${title}'`,
+          card: card
+        })
+        fs.unlink(req.file.path, (err) => {
+          if (err) throw err
+          console.log('Filed Deleted')
+        })
+      }
+    })
+  }
 })
 
 // edit a card

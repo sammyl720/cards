@@ -3,6 +3,7 @@ const validators = require('../middleware/validators')
 const multer = require('multer')
 const Card = require('../models/card')
 const User = require('../models/user')
+const mailer = require('../mailer/mailer')
 const authenticate = require('../middleware/authenticate')
 const router = require('express').Router()
 const path = require('path')
@@ -151,6 +152,51 @@ router.get('/card/:cardId', async (req, res, next) => {
     err.message = `a Card with id ${cardId} was not found`
     err.statusCode = 404
     next(err)
+  }
+})
+
+// verify user is creater of card
+router.post('/email-card', async (req, res, next) => {
+  const { cardId, email } = req.body
+  if (!cardId || !email) {
+    return res.status(400).json({
+      msg: 'Missing information to complete request',
+      success: false
+    })
+  } else {
+    try {
+      const card = await Card.findById(cardId)
+      console.log(card.title)
+      const user = await User.findById(card.user)
+      if (req.session.user._id.toString() !== user._id.toString()) {
+        return res.status(403).json({
+          msg: 'You must be the creator of this card to send it',
+          success: false
+        })
+      }
+      // TO DO style e-mail
+      const emailMsg = {
+        to: email,
+        from: user.name.replace(' ', '') + '@createcards.com',
+        subject: `${user.name} sent you a card`,
+        text: `${user.name} sent you a card`,
+        html: `<div style="text-align:center;width:100%;height:100%;background:#76afd0;display:flex;flex-direction:column;align-items:center;padding:20px;">
+        <h4 style='font-family=cursive;color:darkblue'>Hi, ${user.name} sent you something special</h4>
+        <p>
+        Click the <a href='http://127.0.0.1:3000/card/${cardId}'>link</a>
+        To View
+        </p>
+        <a href='http://127.0.0.1:3000/card/${cardId}' class="background:#4caf50;padding:4px 8px;color:white;font-size:1rem;text-decoration:none;border-radius:10px;">link</a>
+        </div>`
+      }
+      mailer(emailMsg)
+      return res.status(200).json({
+        msg: `Thank you ${user.name} \nAn E-mail with a link to this card - ${card.title}\nwas sent on your behalf to ${email}`,
+        success: true
+      })
+    } catch (err) {
+      return res.status(501).json(err, { success: false })
+    }
   }
 })
 router.get('/cards', authenticate, async (req, res, next) => {

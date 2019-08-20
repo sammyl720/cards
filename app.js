@@ -16,6 +16,7 @@ const port = process.env.PORT || 3000
 app.set('view engine', 'ejs')
 console.log('hello')
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 app.use(session({
   secret: process.env.SESSION_SECRET,
   store: store,
@@ -42,9 +43,11 @@ app.use((req, res, next) => {
   if (req.session.user) {
     req.user = req.session.user
     res.locals.isLoggedIn = true
+    res.locals.user = req.session.user._id
     // console.log(`user logged in:${req.user} `)
   } else {
     res.locals.isLoggedIn = false
+    res.locals.user = null
     // console.log(`user is not logged in`)
   }
   next()

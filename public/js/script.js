@@ -2,10 +2,8 @@ const ge = (id) => document.getElementById(id)
 const container = ge('container')
 const back = ge('back')
 const img = ge('img')
-console.log(`With song : ${back.dataset.song}`)
 const play = back.dataset.song === 'true'
 const confetti = back.dataset.confetti === 'true'
-console.log(`Play: ${play}`)
 const song = new Audio('/public/assets/audio/bdaysong.mp3')
 img.style.background = `url(${img.dataset.img})`
 img.style.backgroundSize = 'cover'

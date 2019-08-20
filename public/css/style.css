@@ -190,6 +190,70 @@
     z-index: 200;
 }
 
+.mailer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    width: 50%;
+    z-index: 5000;
+    transform: translateX(-50%);
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.mailer>h4 {
+    color: #4caf50;
+    position: relative;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif;
+}
+
+.mailer>h4::after {
+    content: 'Send Card Link';
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: transparent;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    font-weight: 400;
+    text-shadow: 18px 0px 3px rgba(0, 0, 0, 0.2);
+    transform: skew(45deg) translateX(-2rem);
+}
+
+.mailer-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 4px 0;
+    justify-content: space-around;
+    color: black;
+}
+
+.mailer-form>.btn {
+    height: 2.4rem;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid #4caf50;
+}
+
+.mailer-form>input[type='email'] {
+    /* width: 70%; */
+    /* align-self: top; */
+    /* margin: auto; */
+    /* position: relative;
+    top: 0; */
+    height: 2.3rem;
+    font-size: 1.5rem;
+    border: 1px solid #4caf50;
+    border-right: none;
+    padding: 0 1.5px;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+}
+
 @media (max-width:600px) {
     .back,
     .container {

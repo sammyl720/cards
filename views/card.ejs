@@ -8,9 +8,9 @@
             </p>
             <div style="float:right;">
                 <%- card.heart ? '<i class="fas fa-heart"></i>' : '' %>
-                <h4 style="display:inline;margin-left:10px;font-size:1rem;">
-                    <%= card.sign %>
-                </h4>
+                    <h4 style="display:inline;margin-left:10px;font-size:1rem;">
+                        <%= card.sign %>
+                    </h4>
             </div>
 
         </div>
@@ -21,8 +21,20 @@
             <div class="img" id='img' data-img="/public/imgs/<%= card.picture %>"></div>
         </div>
     </div>
-    <script src="/public/js/script.js"></script>
-    <% include includes/footer %>
-        </body>
+    <% if(nonav === false && isLoggedIn && card.user.toString() === user.toString()){ %>
+        <div class="mailer" id="mailer">
+            <h4>Send Card Link</h4>
+            <form class="mailer-form" id="mailer-form">
+                <input type="email" name="email" placeholder="E-mail address" required>
+                <input type="hidden" value="<%= card._id %>" name='id' display="none">
+                <button type="submit" class="btn waves-effect green"><i class="material-icons">send</i></button>
+            </form>
+        </div>
 
-        </html>
+        <% } %>
+            <script src="/public/js/script.js"></script>
+            <%- isLoggedIn && !nonav ? '<script src="/public/js/mailScript.js"></script>' : '' %>
+                <% include includes/footer %>
+                    </body>
+
+                    </html>

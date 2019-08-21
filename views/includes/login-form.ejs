@@ -1,41 +1,45 @@
-<div class="row darken-5-text blue-text">
-    <div class="col s8 offset-s2">
-        <h3 class='center'><%= pageTitle %></h3>
+<div class="wrapper">
+    <div class="row darken-5-text blue-text">
+        <div class="col s8 offset-s2">
+            <h3 class='center'>
+                <%= pageTitle %>
+            </h3>
 
-        <form class="col s12" method="POST" action="<%= pageTitle === 'Signup' ? '/auth/signup' : '/auth/login' %>">
-            <div class="row">
-                <% if(pageTitle === 'Signup') { %>
-                  <div class="input-field col s12">
-                    <input id="name" type="text" class="validate" name='name' value='<%= info !== "empty" ?  info.name : "" %>'>
-                    <label for="name">Name</label>
-                </div>
-                <% } %>
-                <div class="input-field col s12">
-                    <input id="email" type="email" class="validate" name='email' value='<%= info !== "empty" ?  info.email : "" %>'>
-                    <label for="name">E-mail</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="password" type="password" class="validate" name='password' value='<%= info !== "empty" ?  info.password : "" %>'>
-                    <label for="password">Password</label>
-                </div>
-                <% if(pageTitle === 'Signup') { %>
-                  <div class="input-field col s12">
-                    <input id="passwordConfirm" type="password" class="validate" name='passwordConfirm' value='<%= info !== "empty" ?  info.passwordConfirm : "" %>'>
-                    <label for="password">Confirm Password</label>
-                </div>
-                <% } %>
-                <button type="submit" class="waves-effect waves-light btn-large right blue">
+            <form class="col s12" method="POST" action="<%= pageTitle === 'Signup' ? '/auth/signup' : '/auth/login' %>">
+                <div class="row">
+                    <% if(pageTitle === 'Signup') { %>
+                        <div class="input-field col s12">
+                            <input id="name" type="text" class="validate" name='name' value='<%= info !== "empty" ?  info.name : "" %>'>
+                            <label for="name">Name</label>
+                        </div>
+                        <% } %>
+                            <div class="input-field col s12">
+                                <input id="email" type="email" class="validate" name='email' value='<%= info !== "empty" ?  info.email : "" %>'>
+                                <label for="name">E-mail</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="password" type="password" class="validate" name='password' value='<%= info !== "empty" ?  info.password : "" %>'>
+                                <label for="password">Password</label>
+                            </div>
+                            <% if(pageTitle === 'Signup') { %>
+                                <div class="input-field col s12">
+                                    <input id="passwordConfirm" type="password" class="validate" name='passwordConfirm' value='<%= info !== "empty" ?  info.passwordConfirm : "" %>'>
+                                    <label for="password">Confirm Password</label>
+                                </div>
+                                <% } %>
+                                    <button type="submit" class="waves-effect waves-light btn-large right blue">
                   <%= pageTitle === 'Signup' ? 'Signup' : 'Login' %>
               </button>
-              
-            </div>
-              <small class="right">
+
+                </div>
+                <small class="right">
               <%- pageTitle === 'Signup' ? '<a href="/auth/login">Have an Account? Login</a>' : '<a href="/auth/signup">Sign up</a>' %>
               </small>
-            
-                
-            </div>
+
+
+        </div>
 
         </form>
     </div>
+</div>
 </div>

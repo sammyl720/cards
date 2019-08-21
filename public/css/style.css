@@ -178,12 +178,13 @@
 .hero {
     position: absolute;
     z-index: -300;
-    background: url('https://static5.depositphotos.com/1003434/471/i/950/depositphotos_4716078-stock-photo-happiness-family.jpg') black;
+    background: url('https://images.pexels.com/photos/157879/gift-jeans-fashion-pack-157879.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') black;
     left: 0;
     top: 0;
     width: 100%;
     height: 100vh;
     background-size: cover;
+    background-position: center;
 }
 
 .row {
@@ -222,6 +223,11 @@
     font-weight: 400;
     text-shadow: 18px 0px 3px rgba(0, 0, 0, 0.2);
     transform: skew(45deg) translateX(-2rem);
+}
+
+#heart-icon {
+    color: black;
+    font-size: 1.4rem;
 }
 
 .mailer-form {

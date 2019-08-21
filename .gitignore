@@ -1,5 +1,4 @@
 node_modules
 .env
-public/assets
 public/imgs
 middleware/aws.js

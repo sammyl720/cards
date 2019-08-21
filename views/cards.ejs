@@ -1,51 +1,53 @@
 <% include includes/header %>
-    <h5 class="pageTitle">
-        <%= pageTitle %>
-    </h5>
-    <% if (cards.length > 0) { %>
-        <div class="cards row">
+    <div class="main indigo lighten-5" style="margin:0;">
+        <h5 class="pageTitle">
+            <%= pageTitle %>
+        </h5>
+        <% if (cards.length > 0) { %>
+            <div class="cards row">
 
-            <% cards.forEach(card => { %>
-                <div class="center-align col s12 m6 <%= cards.length % 3 === 0 ? 'l4' : 'l5 offset-l1' %>">
-                    <iframe class='frame' src="/card?title=<%= card.title %>&message=<%= card.message %>&sign=<%= card.sign %>&picture=<%= card.picture %>&song=<%= card.song %>&confetti=<%= card.confetti %>&heart=<%= card.heart %>&nonav=true" scrolling='no'>
-                        <p>
-                            <%= card.createdAt %>
-                        </p></iframe>
-                    <div class="btn" data-cardId='<%= card._id %>'>View</div>
-                    <a href="/edit-card/<%= card._id %>" class="btn waves-effect waves-light">Edit</a>
-                </div>
+                <% cards.forEach(card => { %>
+                    <div class="center-align col s12 m6 <%= cards.length % 3 === 0 ? 'l4' : 'l5 offset-l1' %>">
+                        <iframe class='frame' src="/card?title=<%= card.title %>&message=<%= card.message %>&sign=<%= card.sign %>&picture=<%= card.picture %>&song=<%= card.song %>&confetti=<%= card.confetti %>&heart=<%= card.heart %>&nonav=true" scrolling='no'>
+                            <p>
+                                <%= card.createdAt %>
+                            </p></iframe>
+                        <div class="btn" data-cardId='<%= card._id %>'>View</div>
+                        <a href="/edit-card/<%= card._id %>" class="btn waves-effect waves-light">Edit</a>
+                    </div>
 
-                <% })%>
-        </div>
-        <% } else { %>
-            <div class="section"></div>
-            <div class="row center-align second-wrapper">
-                <div class="col s12">
-                    <div class="row">
-                        <div class="col s12 m6 offset-m3">
-                            <div class="card blue-text text-darken-4 blue lighten-3">
-                                <div class="card-content">
-                                    <span class="card-title">No Cards Yet</span>
-                                    <p>Start Creating Cards for People You care for, be it a family member, friend or a complete Stranger. Whoever it is, show them you care with a thoughtful card on their special day.</p>
-                                </div>
-                                <div class="card-action center">
-                                    <a href="/new-card">Create <i class="fas fa-plus"></i></a>
+                    <% })%>
+            </div>
+            <% } else { %>
+                <div class="section"></div>
+                <div class="row center-align second-wrapper">
+                    <div class="col s12">
+                        <div class="row">
+                            <div class="col s12 m6 offset-m3">
+                                <div class="card blue-text text-darken-4 blue lighten-3">
+                                    <div class="card-content">
+                                        <span class="card-title">No Cards Yet</span>
+                                        <p>Start Creating Cards for People You care for, be it a family member, friend or a complete Stranger. Whoever it is, show them you care with a thoughtful card on their special day.</p>
+                                    </div>
+                                    <div class="card-action center">
+                                        <a href="/new-card">Create <i class="fas fa-plus"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <% } %>
-                <script>
-                    const btn = document.querySelectorAll('.btn')
-                    btn.forEach(button => {
-                        button.addEventListener('click', () => {
-                            window.location.href = `/card/${button.dataset.cardid}`
-                        })
-                    })
-                </script>
-                <% include includes/footer %>
-                    </body>
+                <% } %>
+    </div>
+    <script>
+        const btn = document.querySelectorAll('.btn')
+        btn.forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = `/card/${button.dataset.cardid}`
+            })
+        })
+    </script>
+    <% include includes/footer %>
+        </body>
 
-                    </html>
+        </html>

@@ -59,30 +59,40 @@ router.post('/card', authenticate, upload.single('pic'), validators.cardValidati
       }
     })
   }
+  const { title, message, sign, song, heart, confetti } = req.body
+  const currentUser = req.user
   let picture = '/public/imgs/logo.png'
   if (req.file) {
     uploadToAWS(req.file.path, req.user._id, async (err, path) => {
       if (err) {
         throw err
-      } else {
-        picture = path
-        const { title, message, sign, song, heart, confetti } = req.body
-        const currentUser = req.user
-        const card = await new Card({ title, message, picture, sign, song, heart, confetti, user: currentUser })
-        // console.log(card)
-        await card.save()
-        const user = await User.findById(currentUser)
-        user.cards.push(card._id)
-        await user.save()
-        res.render('card', {
-          pageTitle: `Your Card '${title}'`,
-          card: card
-        })
-        fs.unlink(req.file.path, (err) => {
-          if (err) throw err
-          console.log('Filed Deleted')
-        })
       }
+      picture = path
+      fs.unlink(req.file.path, (err) => {
+        if (err) throw err
+        console.log('Filed Deleted')
+      })
+      console.log(picture)
+      const card = await new Card({ title, message, picture, sign, song, heart, confetti, user: currentUser })
+      await card.save()
+      const user = await User.findById(currentUser)
+      user.cards.push(card._id)
+      await user.save()
+      res.render('card', {
+        pageTitle: `Your Card '${title}'`,
+        card: card
+      })
+    })
+  } else {
+    console.log(picture)
+    const card = await new Card({ title, message, picture, sign, song, heart, confetti, user: currentUser })
+    await card.save()
+    const user = await User.findById(currentUser)
+    user.cards.push(card._id)
+    await user.save()
+    res.render('card', {
+      pageTitle: `Your Card '${title}'`,
+      card: card
     })
   }
 })
